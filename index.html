@@ -1,0 +1,206 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="root"></div>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <script type="text/babel">
+      const root = document.querySelector(".root");
+
+      function App() {
+        React.useEffect(function () {
+          const getData = fetch("https://api.spaceflightnewsapi.net/v3/blogs")
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (response) {
+              console.log(response);
+            });
+          console.log(getData);
+        }, []);
+
+        return <h1>data fetch</h1>;
+
+        // map--------------------
+        // const fruits = ["Apple", "Orange", "Grape", "Lengkeng", "Mangga"];
+        // return (
+        //   <ul>
+        //     {fruits.map(function (fruit) {
+        //       return <li key={fruit}>{fruit}</li>;
+        //     })}
+        //   </ul>
+        // );
+
+        // mengambil value dari input menggunakan useRef----------------------------------------------------------------
+        //   const namaRef = React.useRef(null);
+
+        //   function ketikaKlik(event) {
+        //     event.preventDefault();
+        //     const nama = namaRef.current.value;
+        //     console.log("Nama: ", nama);
+        //   }
+
+        //   return (
+        //     <form onSubmit={ketikaKlik}>
+        //       <div>
+        //         <label>Nama :</label>
+        //         <input type="text" name="nama" ref={namaRef} />
+        //       </div>
+        //       <button type="submit">Kirim</button>
+        //     </form>
+        //   );
+        // }
+
+        // Mengambil value dari input dengan useState()-------------------------------------------
+        //   const [nama, setNama] = React.useState("");
+
+        //   function ketikaKlik(event) {
+        //     event.preventDefault();
+        //     console.log("Nama:", nama);
+        //   }
+
+        //   return (
+        //     <form onSubmit={ketikaKlik}>
+        //       <div>
+        //         <label>Nama :</label>
+        //         <input
+        //           type="text"
+        //           name="nama"
+        //           value={nama}
+        //           onChange={function (event) {
+        //             setNama(event.target.value);
+        //           }}
+        //         />
+        //       </div>
+        //       <button type="submit">Kirim</button>
+        //     </form>
+        //   );
+      }
+      //------------------------------------------------------------------------------
+      //   function App() {
+      //     const [login, setLogin] = React.useState(false);
+      //     const judulRef = React.useRef(null);
+
+      //     React.useEffect(() => {
+      //       judulRef.current.textContent = "Aplikasi";
+      //       //   const judul = document.getElementById("judul");
+      //       //   judul.textContent = "Aplikasi";
+      //     }, []);
+
+      //     // if (login) {
+      //     //   return (
+      //     //     <>
+      //     //       <h1>Udah Login Bang!</h1>
+      //     //       <button
+      //     //         onClick={function () {
+      //     //           setLogin(false);
+      //     //         }}
+      //     //       >
+      //     //         Logout
+      //     //       </button>
+      //     //     </>
+      //     //   );
+      //     // }
+
+      //     return (
+      //       <>
+      //         <h1 ref={judulRef}>Application</h1>
+      //         <h1>Login Dulu Bang!</h1>
+      //         <p>{login ? "Kamu sudah login" : "kamu belum login"}</p>
+      //         <button
+      //           onClick={function () {
+      //             setLogin(true);
+      //           }}
+      //         >
+      //           Login
+      //         </button>
+      //       </>
+      //     );
+      //   }
+
+      // function App() {
+      //   const [diklik, setDiklik] = React.useState(false);
+      //   const [count, setCount] = React.useState(0);
+
+      // useEffect berfungsi untuk memantau componen yang di render jadi useEffect akan di render ketika component yang ada di argumen kedua di render
+      //     React.useEffect(
+      //       function () {
+      //         console.log("mama aku di render");
+      //       },
+      //       [diklik]
+      //     );
+
+      //     return (
+      //       <>
+      //         <h1 id="judul">Hello Ini judul</h1>
+      //         <button
+      //           onClick={function () {
+      //             setDiklik(true);
+      //           }}
+      //         >
+      //           klik aku
+      //         </button>
+      //         <button
+      //           onClick={function () {
+      //             setCount(count + 1);
+      //           }}
+      //         >
+      //           nilai saat ini: {count}
+      //         </button>
+      //       </>
+      //     );
+      //   }
+
+      // ----useState()
+      // function App() {
+      //   const [count, setCount] = React.useState(0);
+
+      //   return (
+      //     <>
+      //       <button
+      //         onClick={function () {
+      //           setCount(count - 1);
+      //         }}
+      //       >
+      //         -
+      //       </button>
+      //       <span>{count}</span>
+      //       <button
+      //         onClick={function () {
+      //           setCount(count + 1);
+      //         }}
+      //       >
+      //         +
+      //       </button>
+      //     </>
+      //   );
+      // }
+
+      // event Handling-----
+
+      //   function saatKlik(msg) {
+      //     alert(msg);
+      //   }
+
+      //   console.log("hai");
+
+      //   const element = (
+      //     <button
+      //       onClick={function () {
+      //         saatKlik("aww");
+      //       }}
+      //     >
+      //       Click me
+      //     </button>
+      //   );
+      ReactDOM.render(<App />, root);
+    </script>
+  </body>
+</html>

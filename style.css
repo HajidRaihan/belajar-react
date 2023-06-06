@@ -1,0 +1,13 @@
+body{
+    /* background-color: black; */
+    margin: 0;
+    /* color: black; */
+}
+.box{
+    width: 200px;
+    height: 200px;
+    background-color: blue;
+}
+/* #judul{
+    color: white;
+} */
