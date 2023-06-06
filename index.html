@@ -15,18 +15,37 @@
       const root = document.querySelector(".root");
 
       function App() {
+        // mengambil data dari API-----------------------------------------------------------------
+
+        const [news, setNews] = React.useState([]);
+        const [loading, setLoading] = React.useState(true);
+
         React.useEffect(function () {
-          const getData = fetch("https://api.spaceflightnewsapi.net/v3/blogs")
-            .then(function (response) {
-              return response.json();
-            })
-            .then(function (response) {
-              console.log(response);
-            });
-          console.log(getData);
+          async function getData() {
+            const request = await fetch("https://api.spaceflightnewsapi.net/v3/blogs");
+            const response = await request.json();
+
+            setNews(response);
+            setLoading(false);
+          }
+          getData();
         }, []);
 
-        return <h1>data fetch</h1>;
+        return (
+          <div>
+            <h1>data fetch</h1>
+            {loading ? (
+              <p>loading data ...</p>
+            ) : (
+              <ul>
+                {news.map(function (item) {
+                  console.log(item);
+                  return <li key={item.id}>{item.title}</li>;
+                })}
+              </ul>
+            )}
+          </div>
+        );
 
         // map--------------------
         // const fruits = ["Apple", "Orange", "Grape", "Lengkeng", "Mangga"];
